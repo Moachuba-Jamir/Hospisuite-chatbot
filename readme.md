@@ -39,12 +39,47 @@ npm start
 * Express.js
 * MongoDB
 * Google Generative AI (Gemini)
-* WhatsApp Business API through [MSG91](https://msg91.com/in)
+* WhatsApp Business API through msg91
 * ABDM API Integration (coming soon)
+
+## 🔐 Prerequisites and Signup Guide
+
+### 1. MSG91 Signup Process
+
+
+1. Visit [msg91](https://msg91.com/in) Website
+2. Click on "Sign Up" or "Create Account"
+3. Fill in your personal/business details
+4. Verify your email address
+5. Complete business/developer profile (requires GST number)
+6. Navigate to API section
+7. Generate API Key for WhatsApp Integration
+8. Add your phone number (new sim card wihtout any prior whats app account attachements)
+
+
+### 2. Google AI Studio (Gemini API) Signup
+
+
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Sign in with your Google Account
+3. Create a New Google Cloud Project
+   * If you don't have a Google Cloud account, you'll need to create one
+4. Enable Billing (Google provides free credits)
+   * Go to [Google Cloud Console](https://console.cloud.google.com/)
+   * Navigate to Billing
+   * Add a payment method (You won't be charged immediately)
+5. Return to AI Studio
+6. Click "Create API Key"
+7. Copy and save your API Key securely
+8. Configure API Key permissions and quotas
+
+### 3. Additional Configuration
+
+* Set up environment variables in `.env` file:
 
 ## 🔐 Environment Variables
 
-* `PORT`: Express port 
+* `PORT`: Express port
 * `AUTH_KEY`: msg91 Api key
 * `MONGO_URI`: Your mongodb atlas uri
 * `GEMINI_API_KEY`: Google Generative AI API Key
