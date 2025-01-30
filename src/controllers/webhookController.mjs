@@ -10,8 +10,7 @@ import { insuranceSchemes } from "../services/insuranceSchemesService.mjs";
 import {sendAiResponseService} from '../services/sendAIresponse.mjs'
 // utils
 import { callGeminiFlash } from "../utils/ai_Response_flash.mjs";
-import { callGeminiPro } from "../utils/ai_response_pro.mjs";
-import { callGpt } from "../utils/ai_Response_openAi.mjs";
+
 
 export const webhookController = async (req, res) => {
   let senderNumber = req.user.sender;
@@ -59,7 +58,6 @@ export const webhookController = async (req, res) => {
           message: "AI response failed. Please try again later.",
         };
      }
-      console.log(result);
       sendAiResponseService(senderNumber, result);
     }
 

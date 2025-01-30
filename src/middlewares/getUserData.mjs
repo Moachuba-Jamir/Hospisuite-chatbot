@@ -37,7 +37,11 @@ export const getUserData = (req, res, next) => {
     }
 
     // Check if sender exists and content type is text
-    if (user.sender && user.contentType?.toLowerCase().includes("text")) {
+    if (
+      user.sender &&
+      (user.contentType?.toLowerCase().includes("text") ||
+        user.contentType?.toLowerCase().includes("interactive"))
+    ) {
       req.user = user;
       console.log("Extracted user data:", req.user);
       next();

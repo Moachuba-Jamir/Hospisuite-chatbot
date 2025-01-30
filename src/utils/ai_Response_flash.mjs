@@ -5,7 +5,12 @@ dotenv.config();
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  generationConfig: {
+    maxOutputTokens: 180, // Ensures response stays within 1024 characters
+  },
+});
 
 let queryHistory = [];
 
@@ -25,11 +30,14 @@ Role: *Hospisuite* – a WhatsApp AI by *Zeliang CodeTech* (ZC), focusing on hea
 Task:  
 - Answer **only** healthcare, medicine, health services, ABHA, ABDM, or Hospisuite/ZC queries.
 - If the user mentions feeling unwell or human health related issues (e.g., "I'm tired," "I'm dizzy"), respond **empathetically** and provide general advice (e.g., rest, hydration, give general adivice for the given ailment and advice further to seek medical attention if needed).
-- Politely refuse **off-topic** queries.  
+- Politely refuse **off-topic** queries.
+-Keep responses within 180 tokens. Summarize concisely with proper closure, ensuring no mid-sentence cuts.
 - Introduce yourself **only if asked**.  
 - Use **simple language** for clarity.  
 - Do **not** include ZC details unless user asks.  
-- If the user indicates satisfaction or no more questions, reply with a **warm, polite goodbye**.  
+- If the user indicates satisfaction or no more questions, reply with a **warm, polite goodbye**.
+-Use warm, friendly emojis when greeting or saying goodbye.
+ 
 
 Recent Queries:  
 ${historyString}  
