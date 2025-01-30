@@ -59,9 +59,9 @@ let isGreeting = greetings.some(
         console.log("health schemes");
         req.query = "";
         break;
-      case "empaneled hospitals":
+      case "insurance schemes":
         // update state in db
-        console.log("Empaneled Hospitals ");
+        console.log("Insurance Schemes ");
         req.query = "";
         break;
       case "abha registration":

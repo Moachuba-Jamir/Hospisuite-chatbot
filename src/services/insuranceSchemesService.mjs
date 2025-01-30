@@ -2,9 +2,21 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 const body =
-  "The *Pradhan Mantri Jan Arogya Yojana* (PM-JAY) is a flagship health insurance scheme under the Ayushman Bharat initiative. It provides a health cover of ₹5 lakhs per family per year for secondary and tertiary care hospitalization. The scheme targets 10 crore economically weaker families, covering approximately 50 crore beneficiaries, which constitutes the bottom 40% of India's population.\n\n*PM-JAY* includes coverage for pre-existing conditions from the very first day of enrollment and ensures cashless and paperless access to healthcare services. Eligibility is determined based on the deprivation and occupational criteria outlined in the Socio-Economic Caste Census 2011 (SECC 2011) for both rural and urban areas. Beneficiaries can avail of the benefits at all public hospitals and empaneled private healthcare facilities across India.\n\nLearn more: http://pmjay.gov.in";
+  "The *Pradhan Mantri Jan Arogya Yojana* (*PM-JAY*) under Ayushman Bharat provides ₹5 lakh per family per year for hospitalization, covering 50 crore beneficiaries (bottom 40% of India’s population). It includes pre-existing conditions from day one and offers cashless treatment at public & empaneled private hospitals. Eligibility is based on *SECC 2011*.\n\n" +
+  "✅ *Other Schemes:*\n" +
+  "🔹 *PM-JAY for Senior Citizens* 👴👵 - Extra ₹5 lakh cover for 70+ members in PM-JAY families.\n" +
+  "🔹 *PM CARES for Children* 🧒 - ₹5 lakh cover for COVID-19 orphaned children.\n" +
+  "🔹 *NAMASTE Scheme* 🧹 - Health insurance for sanitation workers.\n" +
+  "🔹 *Ayushman CAPF* 👮‍♂️ - Medical cover for CAPF personnel & families.\n\n" +
+  "✅ *Sub-Schemes:*\n" +
+  "🔹 *ASHA Workers* 🏥 - ₹5 lakh insurance.\n" +
+  "🔹 *Anganwadi Workers & Helpers* 👶 - ₹5 lakh insurance.\n" +
+  "🔹 *Construction Workers* 🏗️ - ₹5 lakh insurance.\n\n" +
+  "Learn more: http://pmjay.gov.in";
 
-export const pmJayInfoService = async (userNumber) => {
+
+
+export const insuranceSchemes = async (userNumber) => {
   const options = {
     method: "POST",
     url: "https://control.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/",
@@ -21,7 +33,7 @@ export const pmJayInfoService = async (userNumber) => {
         type: "button",
         header: {
           type: "text",
-          text: "More on PM-JAY...",
+          text: "📢 Ayushman Bharat Insurance Schemes Overview",
         },
         body: {
           text: body,
@@ -58,7 +70,7 @@ export const pmJayInfoService = async (userNumber) => {
     );
     return {
       success: false,
-      error: "Failed to send more information on PM-JAY scheme",
+      error: "Failed to send health scheme message",
       details: error.response ? error.response.data : error.message,
     };
   }

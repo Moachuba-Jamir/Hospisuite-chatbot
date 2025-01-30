@@ -1,7 +1,10 @@
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
-export const resendOptionsService = async (userNumber, req, res) => {
+
+const body = ` I'm sorry, but I'm unable to process that type of content. However, I'm happy to assist you in any other way I can. Let me know how I can help!😊 `;
+
+export const multimediaError = async (userNumber) => {
   const options = {
     method: "POST",
     url: "https://control.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/",
@@ -18,13 +21,13 @@ export const resendOptionsService = async (userNumber, req, res) => {
         type: "button",
         header: {
           type: "text",
-          text: "Your're back on track! ",
+          text: "",
         },
         body: {
-          text: "Here’s a list of our services. Let me know how I can assist you! 😊",
+          text: body,
         },
         footer: {
-          text: "Thank you for using HospiSuite",
+          text: "Tap the *Menu* button to explore the main options.",
         },
         action: {
           buttons: [
@@ -32,21 +35,7 @@ export const resendOptionsService = async (userNumber, req, res) => {
               type: "reply",
               reply: {
                 id: "ID_1",
-                title: " Abha Registration",
-              },
-            },
-            {
-              type: "reply",
-              reply: {
-                id: "id2",
-                title: " Health Schemes",
-              },
-            },
-            {
-              type: "reply",
-              reply: {
-                id: "id3",
-                title: "Insurance Schemes",
+                title: "\u2630 Menu",
               },
             },
           ],
@@ -59,17 +48,17 @@ export const resendOptionsService = async (userNumber, req, res) => {
     const response = await axios.request(options);
     return {
       success: true,
-      message: "ResendOptions message sent successfully",
+      message: "Health scheme message sent successfully",
       data: response.data,
     };
   } catch (error) {
     console.error(
-      "Error sending ResendOptions message:",
+      "Error sending health scheme message:",
       error.response ? error.response.data : error.message
     );
     return {
       success: false,
-      error: "Failed to send ResendOptions message",
+      error: "Failed to send health scheme message",
       details: error.response ? error.response.data : error.message,
     };
   }

@@ -56,7 +56,6 @@ npm start
 7. Generate API Key for WhatsApp Integration
 8. Add your phone number (new sim card wihtout any prior whats app account attachements)
 
-
 ### 2. Google AI Studio (Gemini API) Signup
 
 
