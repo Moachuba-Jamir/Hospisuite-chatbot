@@ -19,14 +19,14 @@ HospiSuite is an innovative WhatsApp-based chatbot designed to revolutionize hea
 ### 1. MSG91 Setup
 
 
-1. ==Account Creation==
+1. Account Creation
    - [ ] Visit [MSG91 Website](https://msg91.com)
    - [ ] Click "Sign Up"
    - [ ] Complete registration with business details
    - [ ] Verify email
 
    \
-2. ==WhatsApp Integration==
+2. WhatsApp Integration
    - [ ]  Navigate to API section
    - [ ] Generate WhatsApp API key
    - [ ] Set up a new phone number
@@ -34,42 +34,45 @@ HospiSuite is an innovative WhatsApp-based chatbot designed to revolutionize hea
 ### 2. Google AI Studio (Gemini API) Signup
 
 
-1. ==Initial Setup==
+1. Initial Setup
    - [ ] Visit Google AI Studio
    - [ ] Sign in with Google Account
 
    \
-2. ==Project Configuration==
+2. Project Configuration
    - [ ] Create new Cloud Project
    - [ ] Enable billing (optional)
    - [ ] Generate API key
-3. ==API Key Setup==
+
+   \
+3. API Key Setup
    - [ ] Copy API key
    - [ ] Configure permissions
    - [ ] Set usage quotas
 
-> 💡 **Note**: For MSG91, you'll need a GST number for business verification. Ensure your WhatsApp number hasn't been used for business accounts before.
 
-> 💡 **Note**: Google AI Studio provides free credits for testing. Production usage may require billing setup.
+> 💡**Note**: For MSG91, you'll need a GST number for business verification. Ensure your WhatsApp number hasn't been used for business accounts before.
+>
+> 💡**Note**: Google AI Studio provides free credits for testing. Production usage may require billing setup.
 
 ### 3. Setting Up Webhook with ngrok
 
 Before starting local development, you'll need to set up ngrok for local webhook testing:
 
-### Ngrok setup
+### `Ngrok setup`
 
 
-1. ==Account Creation==
+1. Account Creation
    - [ ] Visit [ngrok website](https://ngrok.com)
    - [ ] Click "Sign up for free"
    - [ ] Complete registration with email
    - [ ] Verify email address
-2. ==Installation==
+2. Installation
    - [ ] Go to [ngrok download page](https://ngrok.com/download)
    - [ ] Select your operating system (Windows/Mac/Linux)
    - [ ] Download the ngrok package
    - [ ] Extract the downloaded file
-3. ==Authentication==
+3. Authentication
    - [ ] Log into ngrok dashboard
    - [ ] Copy your authtoken from dashboard
    - [ ] Open terminal/command prompt
@@ -79,7 +82,7 @@ Before starting local development, you'll need to set up ngrok for local webhook
      bash ngrok config add-authtoken YOUR_AUTH_TOKEN 
      ```
 
-### Starting up ngrok
+### `Starting up ngrok`
 
 - [ ] Open terminal/command prompt
 - [ ] Navigate to ngrok's installation directory or use it globally if added to PATH
@@ -102,25 +105,25 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
                               0       0       0.00    0.00    0.00    0.00
 ```
 
-### 3️⃣ Configure Webhook in MSG91
+### `Configure Webhook in MSG91`
 
 
 1. Log into [MSG91 Dashboard](https://control.msg91.com/dashboard/)
-2. **==Navigate through:==**
+2. **Navigate through:**
    - [ ] Dashboard → WhatsApp → Numbers
    - [ ] Or use direct link: <https://control.msg91.com/dashboard/whatsapp/numbers>
    - [ ] Find your integrated WhatsApp number
    - [ ] Look for the number you configured during setup
    - [ ] Click the three dots (⋮) menu button on the right side
 
-* **==Set up Webhook:==**
+* **Set up Webhook:**
   - [ ] Click "Webhook" from the dropdown menu
   - [ ] A modal window will appear
   - [ ] Look for "I**nbound Webhook**" section
-  - [ ] Paste your ==ngrok HTTPS URL== + '/webhook'
+  - [ ] Paste your **ngrok HTTPS URL** + '/webhook'
   - [ ] Example: `https://xxxx-xx-xx-xx-xx.ngrok-free.app/webhook`
   - [ ] Click "Save" button
-* **==Verify Configuration:==**
+* **Verify Configuration:**
   - [ ] The webhook URL should be visible in the modal
   - [ ] You can test by sending a WhatsApp message to your integrated number
   - [ ] Check ngrok terminal for incoming webhook logs
@@ -178,8 +181,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 [Zeliang CodeTech](https://zeliangcodetech.com) - Dream | Devise | Develop
 
-
-==Disclaimer: HospiSuite is an independent project and is not officially affiliated with the Ayushman Bharat Digital Mission or the Government of India.==
+Disclaimer: HospiSuite is an independent project and is not officially affiliated with the Ayushman Bharat Digital Mission or the Government of India.
 
 ## 🌐 Contact & Support
 
