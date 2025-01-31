@@ -50,37 +50,25 @@ let isGreeting = greetings.some(
   } else {
     switch (req.state) {
       case "greeting":
-        console.log("greeting state");
         req.query = "";
-        // update the db and retrieve the state value
         break;
       case "health schemes":
-        //udpate state in db
-        console.log("health schemes");
         req.query = "";
         break;
       case "insurance schemes":
-        // update state in db
-        console.log("Insurance Schemes ");
         req.query = "";
         break;
       case "abha registration":
         req.query = "";
-        // update state in db here
-        console.log("abha registration ");
         break;
       case "more about pm-jay":
-        //update state in db here
-        console.log("More about PM-JAY");
         req.query = "";
         break;
       case "more on hwcs":
         req.query = "";
         break;
       case "\u2630 menu":
-        //update state in db here
         req.query = "";
-        console.log("Menu");
         break;
       default:
         req.query = formattedMsg;

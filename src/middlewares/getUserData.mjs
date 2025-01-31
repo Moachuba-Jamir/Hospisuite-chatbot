@@ -1,4 +1,4 @@
-import { multimediaError } from "../utils/multimediaErrorUtil.mjs";
+import { multimediaError } from "../services/MultimediaErrorService.mjs";
 
 export const getUserData = (req, res, next) => {
   try {

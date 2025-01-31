@@ -1,25 +1,24 @@
 // services
 import { greetingService } from "../services/greetingService.mjs";
-
 import { healthSchemeService } from "../services/healthSchemesService.mjs";
 import { abhaRegistrationService } from "../services/abhaRegistrationService.mjs";
 import { pmJayInfoService } from "../services/pmjayInformationService.mjs";
 import { resendOptionsService } from "../services/resendOptionsService.mjs";
 import { hwcService } from "../services/hwcService.mjs";
 import { insuranceSchemes } from "../services/insuranceSchemesService.mjs";
-import {sendAiResponseService} from '../services/sendAIresponse.mjs'
+import { sendAiResponseService } from '../services/sendAIresponse.mjs'
+
 // utils
 import { callGeminiFlash } from "../utils/ai_Response_flash.mjs";
 
-
 export const webhookController = async (req, res) => {
   let senderNumber = req.user.sender;
+  let senderName = req.body.customer_name;
   let result;
   try {
     switch (req.state) {
       case "greeting":
-        result = await greetingService(senderNumber);
-        // callGpt();
+        result = await greetingService(senderNumber, senderName);
         break;
       case "health schemes":
         result = await healthSchemeService(senderNumber);
@@ -44,15 +43,13 @@ export const webhookController = async (req, res) => {
         break;
     }
 
+  // Prompting the AI
     if (req.query != "") {
      try {
        result = await callGeminiFlash(req.query);
         console.log("Gemini Flash Response:", result);
-      //  result = await callGeminiPro(req.query);
-      //  console.log("Gemini Pro Response:", result);
      } catch (error) {
-       //  console.error("Gemini Flash failed, switching to Pro:", error.message);
-       console.error("Gemini Pro also failed:", error);
+       console.error("Gemini-flash failed:", error);
         result = {
           success: false,
           message: "AI response failed. Please try again later.",
@@ -62,12 +59,11 @@ export const webhookController = async (req, res) => {
     }
 
     if (result.success) {
-      res.status(200).json(result);
+      console.log({ message: "AI response successful" });
     } else {
-      res.status(400).json(result);
+      console.log({ message: "AI response unsuccessful" });
     }
   } catch (error) {
     console.error("Error in webhook controller:", error);
-    res.status(500).json({ error: "Internal server error" });
   }
 };
