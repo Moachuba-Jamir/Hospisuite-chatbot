@@ -9,48 +9,62 @@ export const getUserData = (req, res, next) => {
       throw new Error("Empty request body");
     }
 
-    // Handle message text
-    if (req.body.messages && req.body.messages[0]) {
-      const message = req.body.messages[0];
+    // Get the message from the payload
+    const message = req.body.messages?.[0];
+
+    if (message) {
+      let messageText = "";
+      let interactiveType = "";
+      // Handle interactive messages (buttons/lists)
+      if (message.type === "interactive") {
+        if (message.interactive?.button_reply) {
+          messageText = message.interactive.button_reply.title;
+          interactiveType = "button";
+        } else if (message.interactive.list_reply) {
+          messageText = message.interactive?.list_reply.title;
+          interactiveType = "list";
+        }
+      } else {
+        // Handle regular text messages
+        messageText = message.text?.body || "";
+      }
+
       user = {
         sender: message.from,
-        msg:
-          message.text?.body || message.interactive?.button_reply?.title || "",
+        msg: messageText,
         name: req.body.customer_name,
         timestamp: message.timestamp,
         messageId: message.id,
         messageType: message.type,
-        contentType: message.type || "unknown", // Get content type from message type
+        interactiveType: interactiveType,
+        contentType: message.type || "unknown",
       };
-    }
-    // Handle interactive buttons, multimedia etc
-    else {
-      user = {
-        sender: req.body.sender,
-        msg: req.body.text || req.body.interactive || "",
-        name: req.body.customer_name,
-        timestamp: req.body.received_at,
-        messageId: req.body.message_uuid,
-        messageType: req.body.type,
-        contentType: req.body.content_type || "unknown", // Get content type from content_type
-      };
+
+      console.log("Processed message:", {
+        type: message.type,
+        interactiveType,
+        messageText,
+      });
     }
 
-    // Check if sender exists and content type is text
+    // Validate the message
     if (
       user.sender &&
-      (user.contentType?.toLowerCase().includes("text") ||
-        user.contentType?.toLowerCase().includes("interactive"))
+      (user.contentType === "text" ||
+        user.contentType === "interactive" ||
+        user.messageType === "interactive")
     ) {
       req.user = user;
       console.log("Extracted user data:", req.user);
       next();
     } else {
-      // Handle non-text content type
-      console.log("Multimedia content detected:", user.contentType);
+      console.log(
+        "Multimedia or unsupported content detected:",
+        user.contentType
+      );
       multimediaError(user.sender);
       return res.status(400).json({
-        message: "Only text messages are supported",
+        message: "Only text and interactive messages are supported",
         contentType: user.contentType,
       });
     }

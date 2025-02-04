@@ -1,7 +1,8 @@
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
-export const resendOptionsService = async (userNumber, req, res) => {
+export const resendOptionsService = async (userNumber, district) => {
+
   const options = {
     method: "POST",
     url: "https://control.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/",
@@ -39,14 +40,14 @@ export const resendOptionsService = async (userNumber, req, res) => {
               type: "reply",
               reply: {
                 id: "id2",
-                title: " Health Schemes",
+                title: " Health & Insurance",
               },
             },
             {
               type: "reply",
               reply: {
                 id: "id3",
-                title: "Insurance Schemes",
+                title: "Empaneled Hospitals",
               },
             },
           ],
@@ -74,3 +75,5 @@ export const resendOptionsService = async (userNumber, req, res) => {
     };
   }
 };
+
+

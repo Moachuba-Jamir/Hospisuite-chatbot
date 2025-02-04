@@ -2,13 +2,13 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-// util 
+// util
 import { isOnlyEmoji, isOnlySpecialChars } from "../utils/detectUserName.mjs";
 
 export const greetingService = async (userNumber, userName, req, res) => {
   let isNameOnlyEmoji = isOnlyEmoji(userName);
   let isNameOnlySpecialChars = isOnlySpecialChars(userName);
-  let body; 
+  let body;
 
   if (isNameOnlyEmoji == true || isNameOnlySpecialChars == true) {
     body = `Namaste 🙏, I’m HospiSuite, your Ayushman Bharat WhatsApp assistant.what can I help you with today ? In case you're interested here's a quick and easy way to know more about our services.`;
@@ -53,14 +53,14 @@ export const greetingService = async (userNumber, userName, req, res) => {
               type: "reply",
               reply: {
                 id: "id2",
-                title: " Health Schemes",
+                title: "Health & Insurance",
               },
             },
             {
               type: "reply",
               reply: {
                 id: "id3",
-                title: "Insurance Schemes",
+                title: "Empaneled Hospitals",
               },
             },
           ],

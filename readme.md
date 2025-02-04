@@ -50,7 +50,6 @@ HospiSuite is an innovative WhatsApp-based chatbot designed to revolutionize hea
    - [ ] Configure permissions
    - [ ] Set usage quotas
 
-
 > 💡**Note**: For MSG91, you'll need a GST number for business verification. Ensure your WhatsApp number hasn't been used for business accounts before.
 >
 > 💡**Note**: Google AI Studio provides free credits for testing. Production usage may require billing setup.
@@ -96,7 +95,7 @@ ngrok http http://localhost:8000  # Replace 8000 with your application's PORT fr
 
 ```bash
 Session Status                online Account                       yourname@example.com (Plan: Free)
-Version                       3.5.0
+Version                       3.19.1
 Region                        India (in)
 Latency                       41ms
 Web Interface                 http://127.0.0.1:4040
